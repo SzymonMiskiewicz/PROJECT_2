@@ -12,7 +12,7 @@ import java.net.http.HttpResponse;
 
 public class Main {
 
-    private static final String OUTPUTFILE = "3bigAnd3smallRates.txt";
+    private static final String OUTPUTFILE = "3SmallAnd3BigRates.txt";
     public static final String GAP = "\n===============================";
 
     public static void main(String[] args) {
@@ -38,7 +38,7 @@ public class Main {
         } catch (TaxException e) {
             System.err.println(e.getMessage());
         }
-
+        // end region
     }
 
 

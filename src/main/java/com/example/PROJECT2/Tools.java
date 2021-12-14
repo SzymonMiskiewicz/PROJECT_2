@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Scanner;
 
 public class Tools {
 
@@ -53,20 +54,18 @@ public class Tools {
 
     public List<CountryTax> getThreeCountriesWithBiggerStandardRateOfTax(){
         List<CountryTax> threeBigger = new ArrayList<>();
-        for (CountryTax countryTax:listOfCountries) {
-            for (int i = 0; i < 3; i++) {
-                countryTax.getStandardRate( );
+            //zyskanie 3 krajów z największym rate
+            for (int i = listOfCountries.size(); i < listOfCountries.size() -3; i--) {
+
             }
-        }
+
             return threeBigger;
     }
 
     public List<CountryTax> getThreeCountriesWithSmallerStandardRateOfTax(int tax){
         List<CountryTax> threeSmaller = new ArrayList<>();
+        //zyskanie 3 krajów z najmniejszym rate
         for (int i = 0; i <3; i++) {
-
-        } {
-
 
         }
         return threeSmaller;
@@ -78,6 +77,25 @@ public class Tools {
         return listOfCountries;
     }
 
+    public static void getInfoOfCountriesByAbbreviation () {
+        Scanner scanner = new Scanner(System.in);
+        List<CountryTax> countryTaxList = new ArrayList<>();
+        String tax;
+        String[] abbreviation = new String[0];
+        do{
+        System.out.println("Write your abbreviation of country ");
+        tax = scanner.nextLine();
+        try {
+            if (abbreviation.length != 2) {
+
+                System.err.println("Minimum and maximum length of abbreviation is 2");
+            }
+        } catch (NumberFormatException e){
+            System.err.println("Incorrect abbreviation of country! Please write correct abbreviation");
+        }
+
+        }while (!tax.equals("END"));
+    }
 
 
 }
