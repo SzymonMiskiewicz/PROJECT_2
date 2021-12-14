@@ -13,6 +13,7 @@ import java.net.http.HttpResponse;
 public class Main {
 
     private static final String OUTPUTFILE = "3bigAnd3smallRates.txt";
+    public static final String GAP = "\n===============================";
 
     public static void main(String[] args) {
         // wytworze sobie instancje klasy CallApi żeby zawołać metode callApi
