@@ -1,0 +1,8 @@
+Countries with lowest standard rate: 0
+Countries with lowest standard rate: 0
+Countries with lowest standard rate: 0
+
+=========================================
+Countries with highest standard rate: 0
+Countries with highest standard rate: 0
+Countries with highest standard rate: 0

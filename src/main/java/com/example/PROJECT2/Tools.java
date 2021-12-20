@@ -37,13 +37,13 @@ public class Tools {
 
     public void exportToFile(String fileName) throws TaxException {
         try(PrintWriter writer = new PrintWriter(new FileOutputStream(fileName))){
-            for (int i = 0; i <= 3; i++) {
-                writer.println("Countries with lowest standard rate: " + listSort().get(i));
+            for (int i = 0; i < 3; i++) {
+                writer.println("Countries with lowest standard rate: " + listSort().size());
             }
             writer.println(Main.GAP);
 
             for (int i = taxList.size(); i > taxList.size() - 3; i--) {
-                writer.println("Countries with highest standard rate: " + listSort().get(i));
+                writer.println("Countries with highest standard rate: " + listSort());
             }
         }catch (FileNotFoundException e) {
             throw new TaxException("File: " + fileName + "is not found" + e.getMessage());
@@ -64,7 +64,8 @@ public class Tools {
         List<CountryTax> threeSmaller = new ArrayList<>();
         //zyskanie 3 krajów z najmniejszym rate
         for (int i = 0; i <3; i++) {
-            // nie mam pojęcia co mam dać do ciała metody
+            
+            threeSmaller.add(
         }
         return threeSmaller;
     }
