@@ -5,15 +5,19 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
     private static final String OUTPUTFILE = "3SmallAnd3BigRates.txt";
-    public static final String GAP = "\n===============================";
+    public static final String GAP = "\n=========================================";
+
 
     public static void main(String[] args) {
         // wytworze sobie instancje klasy CallApi żeby zawołać metode callApi
@@ -35,10 +39,14 @@ public class Main {
         //export do pliku
         try {
             tools.exportToFile(OUTPUTFILE);
-        } catch (TaxException e) {
+                } catch (TaxException e) {
             System.err.println(e.getMessage());
         }
         // end region
+
+
+            Tools.getInfoOfCountriesByAbbreviation(tools.listSort());
+
     }
 
 

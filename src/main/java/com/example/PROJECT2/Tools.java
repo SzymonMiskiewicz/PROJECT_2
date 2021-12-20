@@ -7,18 +7,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Tools {
 
     private static final String DELIMITER_FOR_FILE = "\t";
-    private TaxResponse taxResponse;
-    private List<CountryTax>listOfCountries = new ArrayList<>();
+    private TaxResponse taxResponse = new TaxResponse();
+    List<CountryTax> taxList;
     public int countrySize(){
-        return listOfCountries.size();
+        return taxList.size();
     }
 
 
@@ -37,13 +35,14 @@ public class Tools {
         return taxResponse;
     }
 
-    public void exportToFile(String fileName) throws TaxException{
+    public void exportToFile(String fileName) throws TaxException {
         try(PrintWriter writer = new PrintWriter(new FileOutputStream(fileName))){
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i <= 3; i++) {
                 writer.println("Countries with lowest standard rate: " + listSort().get(i));
             }
             writer.println(Main.GAP);
-            for (int i = listOfCountries.size(); i < listOfCountries.size() - 3; i--) {
+
+            for (int i = taxList.size(); i > taxList.size() - 3; i--) {
                 writer.println("Countries with highest standard rate: " + listSort().get(i));
             }
         }catch (FileNotFoundException e) {
@@ -52,50 +51,81 @@ public class Tools {
 
     }
 
-    public List<CountryTax> getThreeCountriesWithBiggerStandardRateOfTax(){
-        List<CountryTax> threeBigger = new ArrayList<>();
-            //zyskanie 3 krajów z największym rate
-            for (int i = listOfCountries.size(); i < listOfCountries.size() -3; i--) {
-
-            }
-
-            return threeBigger;
+    public List<CountryTax> getThreeCountriesWithBiggestStandardRateOfTax(List<CountryTax> countriesSortedByTax){
+        List<CountryTax> threeBiggest = new ArrayList<>();
+        //zyskanie 3 krajów z największym rate
+        for (int i = countriesSortedByTax.size(); i > countriesSortedByTax.size() -3; i--) {
+            threeBiggest.add(countriesSortedByTax.get(i-1));
+        }
+        return threeBiggest;
     }
 
-    public List<CountryTax> getThreeCountriesWithSmallerStandardRateOfTax(int tax){
+    public List<CountryTax> getThreeCountriesWithSmallerStandardRateOfTax(){
         List<CountryTax> threeSmaller = new ArrayList<>();
         //zyskanie 3 krajów z najmniejszym rate
         for (int i = 0; i <3; i++) {
-
+            // nie mam pojęcia co mam dać do ciała metody
         }
         return threeSmaller;
     }
 
-    public List<CountryTax>listSort(){
-        listOfCountries.stream().sorted(Comparator.comparingDouble(
-                CountryTax::getStandardRate)).forEach(countryTax -> System.out.println(countryTax.getCountry()));
-        return listOfCountries;
+    public List<CountryTax> listSort()  {
+
+        taxList = new ArrayList<>(taxResponse.getRates().values());
+
+        taxList = taxList.stream()
+                .sorted(Comparator.comparingDouble(CountryTax::getStandardRate))
+                .collect(Collectors.toList());
+
+        taxList.forEach(countryTax ->
+                System.out.println(countryTax.getCountry()));
+        return taxList;
     }
 
-    public static void getInfoOfCountriesByAbbreviation () {
+    public static void getInfoOfCountriesByAbbreviation (List<CountryTax> allCountryTax) {
         Scanner scanner = new Scanner(System.in);
-        List<CountryTax> countryTaxList = new ArrayList<>();
-        String tax;
-        String[] abbreviation = new String[0];
+        String abbreviation;
+        boolean countryFound=false;
+        System.out.println("Write your abbreviation of country (or \"END\" to quit): ");
         do{
-        System.out.println("Write your abbreviation of country ");
-        tax = scanner.nextLine();
-        try {
-            if (abbreviation.length != 2) {
-
-                System.err.println("Minimum and maximum length of abbreviation is 2");
+            abbreviation = scanner.nextLine();
+            if(abbreviation.length() !=2) {
+                System.out.println("Length of abbreviation must be 2 characters");
+            } else {
+                for(CountryTax countryTax:allCountryTax) {
+                    if(abbreviation.equalsIgnoreCase(countryTax.getAbbreviation())) {
+                        System.out.println(countryTax);
+                        countryFound=true;
+                        break;
+                    }
+                }
             }
-        } catch (NumberFormatException e){
-            System.err.println("Incorrect abbreviation of country! Please write correct abbreviation");
-        }
 
-        }while (!tax.equals("END"));
+            if(!countryFound) {
+                System.out.println("Country not found, please try again.");
+            }
+        } while(!abbreviation.equalsIgnoreCase("END") && !countryFound);
     }
+
+//    public static void countryByAbbreviation(String country, CountryTax standardRate){
+//        Scanner scanner = new Scanner(System.in);
+//        String abbrev = "";
+//        Map<String, CountryTax> abbreviation = new TreeMap<>();
+//        for (CountryTax countryTax:listOfCountries) {
+//            System.out.println("Write your abbreviation of country (or \"END\" to quit): ");
+//            do {
+//                abbrev = scanner.nextLine();
+//            if(abbrev.length() !=2) {
+//                System.out.println("Length of abbreviation must be 2 characters");
+//            CountryTax.put(country,standardRate);
+//
+//            }
+//            }while (!abbrev.equalsIgnoreCase("END"));
+//        }
+//
+//    }
+
+
 
 
 }

@@ -9,6 +9,7 @@ public class CountryTax {
     double standardRate;
     @JsonProperty(value = "reduced_rate")
     String reducedRate;
+    String abbreviation;
 
 
     public String getCountry() {
@@ -35,6 +36,10 @@ public class CountryTax {
         this.reducedRate = reducedRate;
     }
 
+    public String getAbbreviation() {
+        return abbreviation;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("CountryTax{");
@@ -44,4 +49,6 @@ public class CountryTax {
         sb.append('}');
         return sb.toString();
     }
+
+
 }

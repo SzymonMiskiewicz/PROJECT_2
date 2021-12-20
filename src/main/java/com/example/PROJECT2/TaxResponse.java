@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class TaxResponse {
 
@@ -11,7 +12,7 @@ public class TaxResponse {
     @JsonProperty(value = "last_updated")
     String lastUpdated;
     String disclaimer;
-    Map<String, CountryTax> rates = new HashMap<>();
+    Map<String, CountryTax> rates = new TreeMap<>();
 
     public String getLastUpdated() {
         return lastUpdated;
