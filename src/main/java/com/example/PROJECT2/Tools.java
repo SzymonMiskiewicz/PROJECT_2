@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class Tools {
 
     private static final String DELIMITER_FOR_FILE = "\t";
-    private TaxResponse taxResponse;
+    private TaxResponse taxResponse = new TaxResponse();
     private List<CountryTax> taxList;
     CountryTax countryTax;
     public int countrySize(){
@@ -43,7 +43,7 @@ public class Tools {
             }
             writer.println(Main.GAP);
 
-            for (int i = countrySize(); i > countrySize() - 3; i--) {
+            for (int i = countrySize()-3; i < countrySize() ; i--) {
                 writer.println("Countries with highest standard rate: " + taxList.get(i));
             }
         }catch (FileNotFoundException e) {
