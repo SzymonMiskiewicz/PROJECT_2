@@ -13,8 +13,9 @@ import java.util.stream.Collectors;
 public class Tools {
 
     private static final String DELIMITER_FOR_FILE = "\t";
-    private TaxResponse taxResponse = new TaxResponse();
-    List<CountryTax> taxList;
+    private TaxResponse taxResponse;
+    private List<CountryTax> taxList;
+    CountryTax countryTax;
     public int countrySize(){
         return taxList.size();
     }
@@ -38,12 +39,12 @@ public class Tools {
     public void exportToFile(String fileName) throws TaxException {
         try(PrintWriter writer = new PrintWriter(new FileOutputStream(fileName))){
             for (int i = 0; i < 3; i++) {
-                writer.println("Countries with lowest standard rate: " + listSort().size());
+                writer.println("Countries with lowest standard rate: " + taxList.get(i));
             }
             writer.println(Main.GAP);
 
-            for (int i = taxList.size(); i > taxList.size() - 3; i--) {
-                writer.println("Countries with highest standard rate: " + listSort());
+            for (int i = countrySize(); i > countrySize() - 3; i--) {
+                writer.println("Countries with highest standard rate: " + taxList.get(i));
             }
         }catch (FileNotFoundException e) {
             throw new TaxException("File: " + fileName + "is not found" + e.getMessage());
@@ -60,19 +61,19 @@ public class Tools {
         return threeBiggest;
     }
 
-    public List<CountryTax> getThreeCountriesWithSmallerStandardRateOfTax(){
+    public List<CountryTax> getThreeCountriesWithSmallerStandardRateOfTax(List<CountryTax>countriesSortedByTax){
         List<CountryTax> threeSmaller = new ArrayList<>();
         //zyskanie 3 krajów z najmniejszym rate
-        for (int i = 0; i <3; i++) {
-            
-            threeSmaller.add(
+        for (int i = countriesSortedByTax.size(); i <3; i++) {
+
+            threeSmaller.add(countriesSortedByTax.get(i));
         }
         return threeSmaller;
     }
 
     public List<CountryTax> listSort()  {
 
-        taxList = new ArrayList<>(taxResponse.getRates().values());
+            taxList = new ArrayList<>(taxResponse.getRates().values());
 
         taxList = taxList.stream()
                 .sorted(Comparator.comparingDouble(CountryTax::getStandardRate))
@@ -94,7 +95,7 @@ public class Tools {
                 System.out.println("Length of abbreviation must be 2 characters");
             } else {
                 for(CountryTax countryTax:allCountryTax) {
-                    if(abbreviation.equalsIgnoreCase(countryTax.getAbbreviation())) {
+                    if(abbreviation.equalsIgnoreCase(countryTax.country)) {
                         System.out.println(countryTax);
                         countryFound=true;
                         break;
