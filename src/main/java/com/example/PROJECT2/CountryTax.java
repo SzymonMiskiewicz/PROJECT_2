@@ -2,7 +2,7 @@ package com.example.PROJECT2;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CountryTax {
+public class CountryTax implements Comparable <CountryTax> {
 
     String country;
     @JsonProperty(value = "standard_rate")
@@ -48,4 +48,8 @@ public class CountryTax {
     }
 
 
+    @Override//
+    public int compareTo(CountryTax countryTax) {
+        return (int) (this.standardRate - countryTax.getStandardRate());
+    }
 }

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class Tools {
 
     private static final String DELIMITER_FOR_FILE = "\t";
-    private TaxResponse taxResponse = new TaxResponse();
+    private TaxResponse taxResponse;
     private List<CountryTax> taxList;
     CountryTax countryTax;
     public int countrySize(){
@@ -74,13 +74,8 @@ public class Tools {
     public List<CountryTax> listSort()  {
 
             taxList = new ArrayList<>(taxResponse.getRates().values());
-
-        taxList = taxList.stream()
-                .sorted(Comparator.comparingDouble(CountryTax::getStandardRate))
-                .collect(Collectors.toList());
-
-        taxList.forEach(countryTax ->
-                System.out.println(countryTax.getCountry()));
+            //zmieniłem Comparator na comparable bo nie potrzebuje zbadać kilka wartości tylko starczy mi jedna
+            Collections.sort(taxList);
         return taxList;
     }
 
