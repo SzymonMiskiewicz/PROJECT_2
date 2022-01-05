@@ -13,10 +13,15 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.PROJECT2.Tools.countrySize;
+
 public class Main {
 
     private static final String OUTPUTFILE = "3SmallAnd3BigRates.txt";
     public static final String GAP = "\n=========================================";
+    private static CountryTax CountryTax;
+    public static ArrayList<CountryTax> taxList = new ArrayList<>();
+    private static Object ArrayList;
 
 
     public static void main(String[] args) {
@@ -25,6 +30,7 @@ public class Main {
         //wytworze instancje klasy Tools do mapowania na obiekt
         Tools tools = new Tools();
         CountryTax countryTax = new CountryTax();
+        List<CountryTax>listSort=new ArrayList<>();
 
         try {
            String body= callApi.callApi();
@@ -37,15 +43,15 @@ public class Main {
 
 
         //export do pliku
-        try {
-            tools.exportToFile(OUTPUTFILE);
-                } catch (TaxException e) {
-            System.err.println(e.getMessage());
-        }
+//        try {
+//            tools.exportToFile(OUTPUTFILE);
+//                } catch (TaxException e) {
+//            System.err.println(e.getMessage());
+//        }
         // end region
 
 
-            Tools.getInfoOfCountriesByAbbreviation(tools.listSort());
+            Tools.getInfoOfCountriesByAbbreviation(taxList);
 
     }
 
