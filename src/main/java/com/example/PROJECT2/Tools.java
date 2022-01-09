@@ -4,34 +4,39 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
 import java.util.*;
-import java.util.stream.Collectors;
-
-import static java.util.Comparator.comparingDouble;
 
 
 public class Tools {
 
     private static final String DELIMITER_FOR_FILE = "\t";
-    private TaxResponse taxResponse = new TaxResponse();
-    private static ArrayList<CountryTax> taxList;
-    private CountryTax countryTax = new CountryTax();
+    private TaxResponse taxResponse ;
+    private static ArrayList<CountryTax> taxArrayList;
+    private CountryTax countryTax ;
     String countriesSortedByTaxText;
     String threeBiggestTaxText;
     String threeSmallerTaxText;
     String countriesSortedByTax="";
     String threeBiggestSorted = "";
     String threeSmallerSorted = "";
-    private boolean countryFound ;
+    public boolean countryFound ;
+
+    public Tools() {
+    }
+
+    public Tools(boolean countryFound) {
+        this.countryFound = countryFound;
+    }
 
 
     public static int countrySize(){
-        return taxList.size();
+        return taxArrayList.size();
     }
 
+    public static void setTaxArrayList(ArrayList<CountryTax> taxArrayList) {
+        Tools.taxArrayList = taxArrayList;
+    }
+    
 
 
     //ten String, który użyłem w callApi, przemapuje do tego obiektu poniżej
@@ -39,7 +44,7 @@ public class Tools {
         // ObjectMapper służy do przemapowania obiektów na te Javy obiekty i z powrotem
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        TaxResponse taxResponse = objectMapper.readValue(body, TaxResponse.class);
+        taxResponse = objectMapper.readValue(body, TaxResponse.class);
 
         System.out.println("Countries: " + taxResponse.getRates().size());
         // przemapowanie obiektu do stringa
@@ -85,25 +90,26 @@ public class Tools {
 
     public List<CountryTax> listSort()  {
 
-            taxList = new ArrayList<>(taxResponse.getRates().values());
+            taxArrayList = new ArrayList<>(taxResponse.getRates().values());
             //zmieniłem Comparator na comparable bo nie potrzebuje zbadać kilka wartości tylko starczy mi jedna
-            Collections.sort(taxList);
-        return taxList;
+            Collections.sort(taxArrayList);
+        return taxArrayList;
     }
 
-    public static void getInfoOfCountriesByAbbreviation(ArrayList<CountryTax>allCountryTax) {
+    public String getInfoOfCountriesByAbbreviation() {
         Scanner scanner = new Scanner(System.in);
-        String abbreviation;
+        String input;
+        taxArrayList = new ArrayList<>();
         boolean countryFound = false ;
-        System.out.println("Write your abbreviation of country (or \"END\" to quit): ");
+        System.out.println("Write your input of country (or \"END\" to quit): ");
         do{
-            abbreviation = scanner.nextLine();
-            if(abbreviation.length() !=2) {
-                System.out.println("Length of abbreviation must be 2 characters");
+            input = scanner.nextLine();
+            if(input.length() !=2) {
+                System.err.println("Length of input must be 2 characters");
             } else {
-                for(CountryTax countryTax:allCountryTax) {
-                    if(abbreviation.equalsIgnoreCase(countryTax.country)) {
-                        System.out.println(countryTax);
+                for(CountryTax countryTax: taxArrayList) {
+                    if(input.equalsIgnoreCase(countryTax.country)) {
+                        System.out.println(taxArrayList);
                         countryFound=true;
 
                     }
@@ -113,8 +119,14 @@ public class Tools {
             if(!countryFound) {
                 System.out.println("Country not found, please try again.");
             }
-        } while(!abbreviation.equalsIgnoreCase("END") && !countryFound);
+
+        } while(!input.equalsIgnoreCase("END") && !countryFound);
+
+        return input;
     }
 
 
+    public CountryTax getCountryTax() {
+        return countryTax;
+    }
 }

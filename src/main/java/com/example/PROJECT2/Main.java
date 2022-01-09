@@ -1,19 +1,7 @@
 package com.example.PROJECT2;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.IOException;
-import java.net.ConnectException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.ArrayList;
-import java.util.List;
-
-import static com.example.PROJECT2.Tools.countrySize;
 
 public class Main {
 
@@ -30,7 +18,7 @@ public class Main {
         //wytworze instancje klasy Tools do mapowania na obiekt
         Tools tools = new Tools();
         CountryTax countryTax = new CountryTax();
-        List<CountryTax>listSort=new ArrayList<>();
+
 
         try {
            String body= callApi.callApi();
@@ -51,7 +39,7 @@ public class Main {
         // end region
 
 
-            Tools.getInfoOfCountriesByAbbreviation(taxList);
+            System.out.println(tools.getInfoOfCountriesByAbbreviation());
 
     }
 

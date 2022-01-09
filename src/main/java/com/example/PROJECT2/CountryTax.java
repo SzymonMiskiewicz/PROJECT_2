@@ -10,6 +10,8 @@ public class CountryTax implements Comparable <CountryTax> {
     @JsonProperty(value = "reduced_rate")
     String reducedRate;
 
+    public CountryTax(){
+    }
 
 
     public String getCountry() {
@@ -48,7 +50,7 @@ public class CountryTax implements Comparable <CountryTax> {
     }
 
 
-    @Override//
+    @Override
     public int compareTo(CountryTax countryTax) {
         return (int) (this.standardRate - countryTax.getStandardRate());
     }
