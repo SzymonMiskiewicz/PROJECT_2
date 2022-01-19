@@ -2,7 +2,9 @@ package com.example.PROJECT2;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CountryTax implements Comparable <CountryTax> {
+import java.util.ArrayList;
+
+public class CountryTax extends ArrayList<TaxResponse> implements Comparable <CountryTax> {
 
     String country;
     @JsonProperty(value = "standard_rate")

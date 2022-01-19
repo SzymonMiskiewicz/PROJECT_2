@@ -10,9 +10,9 @@ public class TaxResponse {
 
     //musze dodać adnotacje @JsonProperty (value = "")żeby ignorować _ - "belke"
     @JsonProperty(value = "last_updated")
-    String lastUpdated;
-    String disclaimer;
-    Map<String, CountryTax> rates = new TreeMap<>();
+    private String lastUpdated;
+    private String disclaimer;
+    private Map<String, CountryTax> rates = new TreeMap<>();
 
     public String getLastUpdated() {
         return lastUpdated;

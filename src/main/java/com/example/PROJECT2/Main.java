@@ -17,11 +17,10 @@ public class Main {
         CallApi callApi = new CallApi();
         //wytworze instancje klasy Tools do mapowania na obiekt
         Tools tools = new Tools();
-        CountryTax countryTax = new CountryTax();
 
 
         try {
-           String body= callApi.callApi();
+           String body = callApi.callApi();
            tools.mapToObject(body);
         } catch (IOException e) {
             e.printStackTrace();
@@ -38,7 +37,8 @@ public class Main {
 //        }
         // end region
 
-
+            //test
+//        System.out.println(tools.listSort());
             System.out.println(tools.getInfoOfCountriesByAbbreviation());
 
     }
