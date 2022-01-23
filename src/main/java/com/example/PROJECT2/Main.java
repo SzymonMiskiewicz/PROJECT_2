@@ -3,13 +3,15 @@ package com.example.PROJECT2;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static com.example.PROJECT2.Tools.countrySize;
+
 public class Main {
 
     private static final String OUTPUTFILE = "3SmallAnd3BigRates.txt";
     public static final String GAP = "\n=========================================";
-    private static CountryTax CountryTax;
-    public static ArrayList<CountryTax> taxList = new ArrayList<>();
-    private static Object ArrayList;
+
+
+
 
 
     public static void main(String[] args) {
@@ -37,9 +39,14 @@ public class Main {
 //        }
         // end region
 
-            //test
-//        System.out.println(tools.listSort());
-            System.out.println(tools.getInfoOfCountriesByAbbreviation());
+            //wypis wszystkich krajów
+        for (int i = 0; i < countrySize();i++){
+            System.out.println(tools.listSort());}
+        //end region
+
+        // metoda dla użytkownika
+        System.out.println(tools.getInfoOfCountriesByAbbreviation());
+        // end region
 
     }
 

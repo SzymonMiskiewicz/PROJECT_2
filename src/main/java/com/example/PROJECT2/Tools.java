@@ -11,7 +11,7 @@ public class Tools {
 
     private static final String DELIMITER_FOR_FILE = "\t";
     private TaxResponse taxResponse;
-    private static ArrayList<CountryTax> taxArrayList = new ArrayList<>();
+    private static ArrayList<CountryTax> taxArrayList;
     private String input ;
     String countriesSortedByTaxText;
     String threeBiggestTaxText;
@@ -23,17 +23,10 @@ public class Tools {
 
     public Tools() {
     }
-    
-
 
     public static int countrySize() {
         return taxArrayList.size();
     }
-
-    public static void setTaxArrayList(ArrayList<CountryTax> taxArrayList) {
-        Tools.taxArrayList = taxArrayList;
-    }
-
 
     //ten String, który użyłem w callApi, przemapuje do tego obiektu poniżej
     public TaxResponse mapToObject(String body) throws JsonProcessingException {
@@ -44,7 +37,7 @@ public class Tools {
 
         System.out.println("Countries: " + taxResponse.getRates().size());
         // przemapowanie obiektu do stringa
-        //String out = objectMapper.writeValueAsString(taxResponse);
+        String out = objectMapper.writeValueAsString(taxResponse);
 
         return taxResponse; // nowy obiekt zrobić
     }
@@ -86,7 +79,7 @@ public class Tools {
 
     public List<CountryTax> listSort() {
 
-        taxArrayList = new ArrayList<>(taxResponse.getRates().values());
+        taxArrayList = new ArrayList<>();
         //zmieniłem Comparator na comparable bo nie potrzebuje zbadać kilka wartości tylko starczy mi jedna
         Collections.sort(taxArrayList);
         return taxArrayList;
@@ -94,7 +87,7 @@ public class Tools {
 
 //    public CountryTax getInfoOfCountriesByAbbreviation() {
 //        Scanner scanner = new Scanner(System.in);
-//        String input;
+
 //
 //        System.out.println("Write your input of country (or \"END\" to quit): ");
 //
@@ -134,7 +127,7 @@ public class Tools {
 //
 //        countryFound = true;
 //    }
-    public void CountryTax getInfoOfCountriesByAbbreviation(){
+    public  CountryTax getInfoOfCountriesByAbbreviation(){
     
         Scanner scanner = new Scanner(System.in);
     
@@ -148,7 +141,7 @@ public class Tools {
             System.out.println(taxResponse.getRates().keySet());
         }
     }
-//        return taxResponse.getRates().get(input);
+        return taxResponse.getRates().get(input);
 }
 
 

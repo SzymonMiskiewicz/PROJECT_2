@@ -2,9 +2,7 @@ package com.example.PROJECT2;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class TaxResponse {
 
@@ -12,7 +10,7 @@ public class TaxResponse {
     @JsonProperty(value = "last_updated")
     private String lastUpdated;
     private String disclaimer;
-    private Map<String, CountryTax> rates = new TreeMap<>();
+    private Map<String, CountryTax> rates = new HashMap<>();
 
     public String getLastUpdated() {
         return lastUpdated;
@@ -36,5 +34,33 @@ public class TaxResponse {
 
     public void setRates(Map<String, CountryTax> rates) {
         this.rates = rates;
+    }
+
+//    private TaxResponse<String> getKey(CountryTax value){
+//        return rates
+//                .entrySet()
+//                .stream()
+//                .filter(country -> CountryTax.equals(country.getValue(), value))
+//                .map(Map.Entry::getKey)
+//                .findAny();
+//    }
+//
+//    private List<String> getKeys(CountryTax value){
+//        return rates
+//                .entrySet()
+//                .stream()
+//                .filter(e -> Object.equals(e.getValue(), value))
+//                .map(Map.Entry::getKey)
+//                .collect(Collectors.toList());
+//    }
+
+    private List<String> getKeys(String value){
+        List<String> keys = new ArrayList<String>();
+        for(String key : rates.keySet()){
+            if(Objects.equals(rates.get(key), value)){
+                keys.add(key);
+            }
+        }
+        return keys;
     }
 }
