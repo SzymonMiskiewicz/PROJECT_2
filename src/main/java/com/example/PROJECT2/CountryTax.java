@@ -4,24 +4,30 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 
-public class CountryTax extends ArrayList<TaxResponse> implements Comparable <CountryTax> {
+public class CountryTax extends ArrayList<TaxResponse> {
 
-    String country;
-    @JsonProperty(value = "standard_rate")
+    String countryCode;
+    @JsonProperty (value = "country")
+    String countryName;
+    @JsonProperty (value = "standard_rate")
     Double standardRate;
-    @JsonProperty(value = "reduced_rate")
-    String reducedRate;
 
     public CountryTax(){
     }
 
-
-    public String getCountry() {
-        return country;
+    public CountryTax (String countryCode , String countryName, Double standardRate){
+        this.countryCode = countryCode;
+        this.countryName = countryName;
+        this.standardRate = standardRate;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
     }
 
     public double getStandardRate() {
@@ -32,28 +38,24 @@ public class CountryTax extends ArrayList<TaxResponse> implements Comparable <Co
         this.standardRate = standardRate;
     }
 
-    public String getReducedRate() {
-        return reducedRate;
+    public String getCountryName() {
+        return countryName;
     }
 
-    public void setReducedRate(String reducedRate) {
-        this.reducedRate = reducedRate;
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
     }
 
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("CountryTax{");
-        sb.append("country:'").append(country).append('\'');
+        sb.append("country:'").append(countryCode).append('\'');
         sb.append(", standardRate:").append(standardRate);
-        sb.append(", reducedRate:").append(reducedRate);
+        sb.append(", reducedRate:").append(countryName);
         sb.append('}');
         return sb.toString();
     }
 
 
-    @Override
-    public int compareTo(CountryTax countryTax) {
-        return (int) (this.standardRate - countryTax.getStandardRate());
-    }
 }

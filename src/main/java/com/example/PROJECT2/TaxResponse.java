@@ -10,7 +10,9 @@ public class TaxResponse {
     @JsonProperty(value = "last_updated")
     private String lastUpdated;
     private String disclaimer;
-    private Map<String, CountryTax> rates = new HashMap<>();
+    private Map<String, Object> rates = new HashMap<>();
+
+    public TaxResponse (){}
 
     public String getLastUpdated() {
         return lastUpdated;
@@ -28,11 +30,11 @@ public class TaxResponse {
         this.disclaimer = disclaimer;
     }
 
-    public Map<String, CountryTax> getRates() {
+    public Map<String, Object> getRates() {
         return rates;
     }
 
-    public void setRates(Map<String, CountryTax> rates) {
+    public void setRates(Map<String, Object> rates) {
         this.rates = rates;
     }
 
@@ -54,13 +56,15 @@ public class TaxResponse {
 //                .collect(Collectors.toList());
 //    }
 
-    private List<String> getKeys(String value){
-        List<String> keys = new ArrayList<String>();
-        for(String key : rates.keySet()){
-            if(Objects.equals(rates.get(key), value)){
-                keys.add(key);
-            }
-        }
-        return keys;
-    }
+//    private List<String> getKeys(String value){
+//        List<String> keys = new ArrayList<String>();
+//        for(String key : rates.keySet()){
+//            if(Object.equals(rates.get(key), value)){
+//                keys.add(key);
+//            }
+//        }
+//        return keys;
+//    }
+
+
 }

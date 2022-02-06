@@ -4,6 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.*;
 
 
@@ -11,18 +14,10 @@ public class Tools {
 
     private static final String DELIMITER_FOR_FILE = "\t";
     private TaxResponse taxResponse;
-    private static ArrayList<CountryTax> taxArrayList;
-    private String input ;
-    String countriesSortedByTaxText;
-    String threeBiggestTaxText;
-    String threeSmallerTaxText;
-    String countriesSortedByTax = "";
-    String threeBiggestSorted = "";
-    String threeSmallerSorted = "";
-   
+    private static List<CountryTax> taxArrayList = new ArrayList<>();
 
-    public Tools() {
-    }
+
+
 
     public static int countrySize() {
         return taxArrayList.size();
@@ -33,7 +28,7 @@ public class Tools {
         // ObjectMapper służy do przemapowania obiektów na te Javy obiekty i z powrotem
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        taxResponse = objectMapper.readValue(body, TaxResponse.class);
+         taxResponse = objectMapper.readValue(body, TaxResponse.class);// nevim prot mam to tady spatne
 
         System.out.println("Countries: " + taxResponse.getRates().size());
         // przemapowanie obiektu do stringa
@@ -42,52 +37,31 @@ public class Tools {
         return taxResponse; // nowy obiekt zrobić
     }
 
-//    public void exportToFile(String fileName) throws TaxException {
-//        try(PrintWriter writer = new PrintWriter(new FileOutputStream(fileName))){
+   /* public void exportToFile(String fileName) throws TaxException {
+        try(PrintWriter writer = new PrintWriter(new FileOutputStream(fileName))) {
 //            for (int i = 0; i < 3; i++) {
-//                writer.println("Countries with lowest standard rate: " + taxList.get(i));
+            writer.println("Countries with lowest standard rate: "
+                    + taxFilter.getThreeCountriesWithSmallerStandardRateOfTax());
 //            }
-//            writer.println(Main.GAP);
-//
+            writer.println(Main.GAP);
+
 //            for (int i = countrySize()-3; i < countrySize() ; i--) {
-//                writer.println("Countries with highest standard rate: " + taxList.get(i));
-//            }
-//        }catch (FileNotFoundException e) {
-//            throw new TaxException("File: " + fileName + "is not found" + e.getMessage());
+//            taxArrayList.get(i)
+            writer.println("Countries with highest standard rate: "
+                    + taxFilter.getThreeCountriesWithBiggestStandardRateOfTax());
 //        }
-
-//    }
-
-    public List<CountryTax> getThreeCountriesWithBiggestStandardRateOfTax() {
-        List<CountryTax> threeBiggest = new ArrayList<>();
-        //zyskanie 3 krajów z największym rate
-        for (int i = countrySize(); i > countrySize() - 3; i--) {
-            threeBiggest.add(taxArrayList.get(i - 1));
+        }catch (FileNotFoundException e) {
+            throw new TaxException("File: " + fileName + "is not found" + e.getMessage());
         }
-        return threeBiggest;
-    }
 
-    public List<CountryTax> getThreeCountriesWithSmallerStandardRateOfTax() {
-        List<CountryTax> threeSmaller = new ArrayList<>();
-        //zyskanie 3 krajów z najmniejszym rate
-        for (int i = countrySize(); i < 3; i++) {
+    }*/
 
-            threeSmaller.add(taxArrayList.get(i));
-        }
-        return threeSmaller;
-    }
-
-    public List<CountryTax> listSort() {
-
-        taxArrayList = new ArrayList<>();
-        //zmieniłem Comparator na comparable bo nie potrzebuje zbadać kilka wartości tylko starczy mi jedna
-        Collections.sort(taxArrayList);
-        return taxArrayList;
-    }
 
 //    public CountryTax getInfoOfCountriesByAbbreviation() {
+//
+//        boolean countryFound = false;
 //        Scanner scanner = new Scanner(System.in);
-
+//
 //
 //        System.out.println("Write your input of country (or \"END\" to quit): ");
 //
@@ -116,33 +90,23 @@ public class Tools {
 //        return taxResponse.getRates().get(input);
 //
 //    }
-//    public CountryTax getInformationAboutCountryByAbbreviation(){
+
+//    public  CountryTax getInfoOfCountriesByAbbreviation(){
+//
+//        Scanner scanner = new Scanner(System.in);
 //
 //
-//        String writeValue;
+//        System.out.println("Write your input of country (or \\\"END\\\" to quit): ");
+//        while (taxResponse.getRates().get(input) == null) {
+//        input = scanner.nextLine().toUpperCase();
 //
-//        Scanner input = new Scanner(System.in);
-//        System.out.println("Write Abbreviation of country for example :cz, Cz");
-//        writeValue = input.next();
-//
-//        countryFound = true;
+//        if (taxResponse.getRates().get(input) == null) {
+//            System.out.println("Country not found, please try again.");
+//            System.out.println(taxResponse.getRates().keySet());
+//        }
 //    }
-    public  CountryTax getInfoOfCountriesByAbbreviation(){
-    
-        Scanner scanner = new Scanner(System.in);
-    
-
-        System.out.println("Write your input of country (or \\\"END\\\" to quit): ");
-        while (taxResponse.getRates().get(input) == null) {
-        input = scanner.nextLine().toUpperCase();
-
-        if (taxResponse.getRates().get(input) == null) {
-            System.out.println("Country not found, please try again.");
-            System.out.println(taxResponse.getRates().keySet());
-        }
-    }
-        return taxResponse.getRates().get(input);
-}
+//        return taxResponse.getRates().get(input);
+//}
 
 
 }
