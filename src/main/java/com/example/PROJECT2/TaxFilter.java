@@ -4,7 +4,7 @@ import java.util.*;
 
 public class TaxFilter {
 
-    private static final TaxResponse tax = null;
+    private static TaxResponse tax ;
     private static List<CountryTax> taxList = new ArrayList<>();
     private String input ;
 
@@ -84,10 +84,15 @@ public class TaxFilter {
             Optional<CountryTax> countryYouLookingFor = taxList.stream().filter(countryTax
                     -> Objects.equals(countryTax.getCountryCode(), input)).findAny();
 
-            if (countryYouLookingFor.isPresent() && (input.equalsIgnoreCase(String.valueOf(tax.getRates().get(input))))) {
+            if (countryYouLookingFor.isPresent()
+
+                    &&
+                    (input.equalsIgnoreCase(String.valueOf(tax.getRates().get(input))))) {
+
                 System.out.println(countryYouLookingFor.get().getCountryCode()
                         + " ---" + countryYouLookingFor.get().getStandardRate());
             } else if (input.length() != 2) {
+
                 System.err.println("Length of input must be 2 characters");
 
             }else
