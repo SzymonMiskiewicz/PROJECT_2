@@ -15,12 +15,15 @@ public class TaxFilter {
     public void callObject() {
         List<CountryTax> countryTaxList = new ArrayList<>();
         tax.getRates().entrySet().forEach(stringObjectEntry -> {
+
             Map.Entry<String, Object> entry = stringObjectEntry;
 
             Map<String, Object> data = (Map<String, Object>) entry.getValue();
 
             System.out.println(entry.getKey() + " --> " + data.get("standard_rate"));
-            CountryTax r = new CountryTax(entry.getKey(), (String) data.get("country"), (Double) data.get("standard_rate"));
+
+            CountryTax r = new CountryTax(entry.getKey(), (String) data.get("country"),
+                    (Double) data.get("standard_rate"));
             countryTaxList.add(r);
 
 
@@ -79,15 +82,13 @@ public class TaxFilter {
 
         do {
 
-            input = String.valueOf(scanner.hasNext());
+            input = scanner.nextLine().toUpperCase(Locale.ROOT);
+
 
             Optional<CountryTax> countryYouLookingFor = taxList.stream().filter(countryTax
                     -> Objects.equals(countryTax.getCountryCode(), input)).findAny();
 
-            if (countryYouLookingFor.isPresent()
-
-                    &&
-                    (input.equalsIgnoreCase(String.valueOf(tax.getRates().get(input))))) {
+            if (countryYouLookingFor.isPresent()) {
 
                 System.out.println(countryYouLookingFor.get().getCountryCode()
                         + " ---" + countryYouLookingFor.get().getStandardRate());
