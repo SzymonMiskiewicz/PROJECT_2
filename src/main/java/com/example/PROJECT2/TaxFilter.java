@@ -12,7 +12,7 @@ public class TaxFilter {
     public TaxFilter(){}
 
 
-    public void callObject() {
+    public List<CountryTax> callObject() {
         List<CountryTax> countryTaxList = new ArrayList<>();
         tax.getRates().entrySet().forEach(stringObjectEntry -> {
 
@@ -22,12 +22,13 @@ public class TaxFilter {
 
             System.out.println(entry.getKey() + " --> " + data.get("standard_rate"));
 
-            CountryTax r = new CountryTax(entry.getKey(), (String) data.get("country"),
+            CountryTax result = new CountryTax(entry.getKey(), (String) data.get("country"),
                     (Double) data.get("standard_rate"));
-            countryTaxList.add(r);
+            countryTaxList.add(result);
 
 
         });
+        return countryTaxList;
     }
 
 

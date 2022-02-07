@@ -42,11 +42,11 @@ public class Main {
 
 
         //export do pliku
-//        try {
-//            tools.exportToFile(OUTPUTFILE);
-//                } catch (TaxException e) {
-//            System.out.println(e.getMessage());
-//        }
+        try {
+            tools.exportToFile(OUTPUTFILE);
+                } catch (TaxException e) {
+            System.out.println(e.getMessage());
+        }
         // end region
 
             //wypis wszystkich krajów
