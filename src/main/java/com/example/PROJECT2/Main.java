@@ -24,8 +24,8 @@ public class Main {
         Tools tools = new Tools();
         TaxFilter taxFilter = new TaxFilter();
 
-        TaxResponse tax = null;
-//        TaxResponse tax = new TaxResponse();
+
+        TaxResponse tax = new TaxResponse();
 
 
         try {
@@ -37,7 +37,7 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
-        taxFilter.callObject();
+
 
 
 

@@ -4,7 +4,7 @@ import java.util.*;
 
 public class TaxFilter {
 
-    private static TaxResponse tax ;
+    private static TaxResponse tax = new TaxResponse() ;
     private static List<CountryTax> taxList = new ArrayList<>();
     private String input ;
 
@@ -12,7 +12,8 @@ public class TaxFilter {
     public TaxFilter(){}
 
 
-    public List<CountryTax> callObject() {
+    public static TaxResponse callObject() {
+        
         List<CountryTax> countryTaxList = new ArrayList<>();
         tax.getRates().entrySet().forEach(stringObjectEntry -> {
 
@@ -28,7 +29,7 @@ public class TaxFilter {
 
 
         });
-        return countryTaxList;
+        return tax;
     }
 
 

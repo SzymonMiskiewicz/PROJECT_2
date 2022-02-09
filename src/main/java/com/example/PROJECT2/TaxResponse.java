@@ -14,6 +14,11 @@ public class TaxResponse {
 
     public TaxResponse (){}
 
+    public TaxResponse( Map<String, Object> rates) {
+
+        this.rates = rates;
+    }
+
     public String getLastUpdated() {
         return lastUpdated;
     }
