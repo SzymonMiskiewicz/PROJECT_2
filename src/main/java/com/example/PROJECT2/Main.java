@@ -23,8 +23,6 @@ public class Main {
         //wytworze instancje klasy Tools do mapowania na obiekt
         Tools tools = new Tools();
         TaxFilter taxFilter = new TaxFilter();
-
-
         TaxResponse tax = new TaxResponse();
 
 
@@ -36,17 +34,15 @@ public class Main {
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         }
-
-
-
+        taxFilter.callObject(tax);
 
 
         //export do pliku
-        try {
-            tools.exportToFile(OUTPUTFILE);
-                } catch (TaxException e) {
-            System.out.println(e.getMessage());
-        }
+//        try {
+//            tools.exportToFile(OUTPUTFILE);
+//                } catch (TaxException e) {
+//            System.out.println(e.getMessage());
+//        }
         // end region
 
             //wypis wszystkich krajów

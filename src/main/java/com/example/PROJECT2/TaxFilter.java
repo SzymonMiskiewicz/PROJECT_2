@@ -4,16 +4,16 @@ import java.util.*;
 
 public class TaxFilter {
 
-    private static TaxResponse tax = new TaxResponse() ;
-    private static List<CountryTax> taxList = new ArrayList<>();
+    private TaxResponse tax = new TaxResponse() ;
+    private List<CountryTax> taxList = new ArrayList<>();
     private String input ;
 
 
     public TaxFilter(){}
 
 
-    public static TaxResponse callObject() {
-        
+    public void callObject(TaxResponse tax) {
+
         List<CountryTax> countryTaxList = new ArrayList<>();
         tax.getRates().entrySet().forEach(stringObjectEntry -> {
 
@@ -29,11 +29,11 @@ public class TaxFilter {
 
 
         });
-        return tax;
+
     }
 
 
-    public static List<CountryTax> getThreeCountriesWithSmallerStandardRateOfTax() {
+    public List<CountryTax> getThreeCountriesWithSmallerStandardRateOfTax() {
         List<CountryTax> threeSmaller = new ArrayList<>(taxList.subList(0, 3));
         taxList.sort(Comparator.comparing(CountryTax::getStandardRate).reversed());
 
@@ -46,7 +46,7 @@ public class TaxFilter {
         return threeSmaller;
     }
 
-    public static List<CountryTax> getThreeCountriesWithBiggestStandardRateOfTax() {
+    public List<CountryTax> getThreeCountriesWithBiggestStandardRateOfTax() {
 
         List<CountryTax> threeBiggest = new ArrayList<>(taxList.subList(0, 3));
         taxList.sort(Comparator.comparing(CountryTax::getStandardRate));
@@ -84,7 +84,7 @@ public class TaxFilter {
 
         do {
 
-            input = scanner.nextLine().toUpperCase(Locale.ROOT);
+            input = scanner.nextLine().toUpperCase(Locale.GERMANY);
 
 
             Optional<CountryTax> countryYouLookingFor = taxList.stream().filter(countryTax
