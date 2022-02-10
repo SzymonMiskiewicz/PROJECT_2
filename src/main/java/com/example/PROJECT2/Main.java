@@ -21,7 +21,7 @@ public class Main {
         TaxFilter taxFilter = new TaxFilter();
         TaxResponse tax = new TaxResponse();
 //        CountryTax countryTax = new CountryTax();
-        List<CountryTax> countryTaxList = null;
+        List<CountryTax> countryTaxList ;
 
 
 
@@ -34,7 +34,7 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
-        taxFilter.callObject(tax);
+        countryTaxList = taxFilter.callObject(tax);
 
 
         //export do pliku
@@ -59,7 +59,7 @@ public class Main {
         // end region
 
         // metoda dla użytkownika
-        taxFilter.getInformationAboutCountryByAbbreviation();
+//        taxFilter.getInformationAboutCountryByAbbreviation();
         // end region
 
     }
