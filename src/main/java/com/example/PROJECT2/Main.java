@@ -20,7 +20,8 @@ public class Main {
         Tools tools = new Tools();
         TaxFilter taxFilter = new TaxFilter();
         TaxResponse tax = new TaxResponse();
-        List<CountryTax> filterList = new ArrayList<>();
+//        CountryTax countryTax = new CountryTax();
+        List<CountryTax> countryTaxList = null;
 
 
 
@@ -37,11 +38,11 @@ public class Main {
 
 
         //export do pliku
-        try {
-            tools.exportToFile(OUTPUTFILE);
-                } catch (TaxException e) {
-            System.out.println(e.getMessage());
-        }
+//        try {
+//            tools.exportToFile(OUTPUTFILE);
+//                } catch (TaxException e) {
+//            System.out.println(e.getMessage());
+//        }
         // end region
 
             //wypis wszystkich krajów
@@ -50,11 +51,11 @@ public class Main {
         //end region
 
         // Three countries with biggest tax
-        System.out.println(taxFilter.getThreeCountriesWithBiggestStandardRateOfTax(filterList));
+        System.out.println(taxFilter.getThreeCountriesWithBiggestStandardRateOfTax(countryTaxList));
         // end region
 
         // Three countries with smallest tax
-        System.out.println(taxFilter.getThreeCountriesWithSmallestStandardRateOfTax(filterList));
+        System.out.println(taxFilter.getThreeCountriesWithSmallestStandardRateOfTax(countryTaxList));
         // end region
 
         // metoda dla użytkownika

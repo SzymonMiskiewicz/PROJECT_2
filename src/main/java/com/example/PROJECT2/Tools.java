@@ -116,7 +116,8 @@ public class Tools {
 //
 //            PrintWriter writer = new PrintWriter(new FileOutputStream(fileName));
 //            writer.println("Countries with lowest standard rate: " );
-//            List<CountryTax> threeSmaller = taxFilter.getThreeCountriesWithSmallestStandardRateOfTax();
+//            List<CountryTax> threeSmaller = taxFilter
+//                    .getThreeCountriesWithSmallestStandardRateOfTax(taxArrayList);
 //
 //            for(CountryTax tax : threeSmaller) {
 //
@@ -126,8 +127,8 @@ public class Tools {
 //            writer.println(Main.GAP);
 //
 //            writer.println("Countries with highest standard rate: ");
-//            List <CountryTax> threeBiggest =
-//                    taxFilter.getThreeCountriesWithBiggestStandardRateOfTax();
+//            List <CountryTax> threeBiggest = taxFilter
+//                    .getThreeCountriesWithBiggestStandardRateOfTax(taxArrayList);
 //
 //            for (CountryTax tax : threeBiggest) {
 //

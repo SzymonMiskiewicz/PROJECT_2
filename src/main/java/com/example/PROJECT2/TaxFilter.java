@@ -13,7 +13,7 @@ public class TaxFilter {
     public TaxFilter(){}
 
 
-    public void callObject(TaxResponse tax) {
+    public static List <CountryTax> callObject(TaxResponse tax) {
 
         List<CountryTax> countryTaxList = new ArrayList<>();
         tax.getRates().entrySet().forEach(stringObjectEntry -> {
@@ -30,7 +30,7 @@ public class TaxFilter {
 
 
         });
-
+        return countryTaxList;
     }
 
 
@@ -39,7 +39,7 @@ public class TaxFilter {
                 .sorted(Comparator.comparing(CountryTax::getCountryCode))
                 .collect(Collectors.toList()).subList(0,3);
 
-//        List<CountryTax> threeSmaller = new ArrayList<>(taxList.subList(0, 3));
+
         taxList.sort(Comparator.comparing(CountryTax::getStandardRate).reversed());
 
         //zyskanie 3 krajów z najmniejszym rate
