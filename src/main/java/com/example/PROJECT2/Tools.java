@@ -16,12 +16,14 @@ public class Tools {
     private TaxResponse taxResponse;
     private static List<CountryTax> taxArrayList = new ArrayList<>();
     private TaxFilter taxFilter = new TaxFilter();
+    private CountryTax countryTax = new CountryTax();
 
-
-
-
-    public static int countrySize() {
+    public int countriesSize (){
         return taxArrayList.size();
+    }
+
+    public CountryTax getCountry(int index){
+        return taxArrayList.get(index);
     }
 
     //ten String, który użyłem w callApi, przemapuje do tego obiektu poniżej
@@ -109,29 +111,30 @@ public class Tools {
 //        return taxResponse.getRates().get(input);
 //}
 
-    /*public void exportToFile(String fileName) throws TaxException {
-        try {
-
-            PrintWriter writer = new PrintWriter(new FileOutputStream(fileName));
-            writer.println("Countries with lowest standard rate: " );
-            List<CountryTax> threeSmaller = taxFilter.getThreeCountriesWithSmallerStandardRateOfTax();
-
-            for(CountryTax tax : threeSmaller) {
-
-                writer.println(tax );
-            }
-
-            writer.println(Main.GAP);
-
-            writer.println("Countries with highest standard rate: ");
-            List <CountryTax> threeBiggest = taxFilter.getThreeCountriesWithBiggestStandardRateOfTax();
-
-            for (CountryTax tax : threeBiggest) {
-                writer.println(tax);
-            }
-        } catch(FileNotFoundException e) {
-            throw new TaxException("File: " + fileName + "is not found" + e.getMessage());
-        }
-    }
-*/
+//    public void exportToFile(String fileName) throws TaxException {
+//        try {
+//
+//            PrintWriter writer = new PrintWriter(new FileOutputStream(fileName));
+//            writer.println("Countries with lowest standard rate: " );
+//            List<CountryTax> threeSmaller = taxFilter.getThreeCountriesWithSmallestStandardRateOfTax();
+//
+//            for(CountryTax tax : threeSmaller) {
+//
+//                writer.println(tax );
+//            }
+//
+//            writer.println(Main.GAP);
+//
+//            writer.println("Countries with highest standard rate: ");
+//            List <CountryTax> threeBiggest =
+//                    taxFilter.getThreeCountriesWithBiggestStandardRateOfTax();
+//
+//            for (CountryTax tax : threeBiggest) {
+//
+//                writer.println(tax);
+//            }
+//        } catch(FileNotFoundException e) {
+//            throw new TaxException("File: " + fileName + "is not found" + e.getMessage());
+//        }
+//    }
 }

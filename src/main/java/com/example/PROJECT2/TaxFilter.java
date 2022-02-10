@@ -1,6 +1,7 @@
 package com.example.PROJECT2;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class TaxFilter {
 
@@ -33,8 +34,12 @@ public class TaxFilter {
     }
 
 
-    public List<CountryTax> getThreeCountriesWithSmallerStandardRateOfTax() {
-        List<CountryTax> threeSmaller = new ArrayList<>(taxList.subList(0, 3));
+    public List<CountryTax> getThreeCountriesWithSmallestStandardRateOfTax(List<CountryTax>taxList) {
+        List<CountryTax> threeSmallest =
+                taxList.stream().sorted(CountryTax::getStandardRate)
+                        .collect(Collectors.toList()).subList(0,3);
+
+//        List<CountryTax> threeSmaller = new ArrayList<>(taxList.subList(0, 3));
         taxList.sort(Comparator.comparing(CountryTax::getStandardRate).reversed());
 
         //zyskanie 3 krajów z najmniejszym rate
@@ -43,12 +48,15 @@ public class TaxFilter {
 //
 //            threeSmaller.add(taxArrayList.get(i));
 //        }
-        return threeSmaller;
+
+        return threeSmallest;
     }
 
-    public List<CountryTax> getThreeCountriesWithBiggestStandardRateOfTax() {
-
-        List<CountryTax> threeBiggest = new ArrayList<>(taxList.subList(0, 3));
+    public List<CountryTax> getThreeCountriesWithBiggestStandardRateOfTax(List<CountryTax>taxList) {
+        List<CountryTax> threeBiggest =
+                taxList.stream().sorted(CountryTax::getStandardRate)
+                        .collect(Collectors.toList()).subList(0,3);
+//        List<CountryTax> threeBiggest = new ArrayList<>(taxList.subList(0, 3));
         taxList.sort(Comparator.comparing(CountryTax::getStandardRate));
 //        List<CountryTax> threeBiggest = new ArrayList<>();
 //        //zyskanie 3 krajów z największym rate

@@ -2,11 +2,7 @@ package com.example.PROJECT2;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-
-import static com.example.PROJECT2.Tools.countrySize;
 
 public class Main {
 
@@ -24,6 +20,8 @@ public class Main {
         Tools tools = new Tools();
         TaxFilter taxFilter = new TaxFilter();
         TaxResponse tax = new TaxResponse();
+        List<CountryTax> filterList = new ArrayList<>();
+
 
 
         try {
@@ -34,28 +32,29 @@ public class Main {
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         }
+
         taxFilter.callObject(tax);
 
 
         //export do pliku
-//        try {
-//            tools.exportToFile(OUTPUTFILE);
-//                } catch (TaxException e) {
-//            System.out.println(e.getMessage());
-//        }
+        try {
+            tools.exportToFile(OUTPUTFILE);
+                } catch (TaxException e) {
+            System.out.println(e.getMessage());
+        }
         // end region
 
             //wypis wszystkich krajów
-        for (int i = 0; i < countrySize();i++){
-            System.out.println(countrySize());}
+        for (int i = 0; i < tools.countriesSize();i++){
+            System.out.println(tools.getCountry(i));}
         //end region
 
-        // Three countries with bigger tax
-        //System.out.println(taxFilter.getThreeCountriesWithBiggestStandardRateOfTax());
+        // Three countries with biggest tax
+        System.out.println(taxFilter.getThreeCountriesWithBiggestStandardRateOfTax(filterList));
         // end region
 
-        // Three countries with smaller tax
-       // System.out.println(taxFilter.getThreeCountriesWithSmallerStandardRateOfTax());
+        // Three countries with smallest tax
+        System.out.println(taxFilter.getThreeCountriesWithSmallestStandardRateOfTax(filterList));
         // end region
 
         // metoda dla użytkownika
