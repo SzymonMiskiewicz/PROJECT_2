@@ -53,9 +53,9 @@ public class TaxFilter {
     }
 
     public List<CountryTax> getThreeCountriesWithBiggestStandardRateOfTax(List<CountryTax>taxList) {
-        taxList.sort(Comparator.comparing(CountryTax::getStandardRate));
+//        taxList.sort(Comparator.comparing(CountryTax::getStandardRate).reversed());
         List<CountryTax> threeBiggest = taxList.stream()
-                .sorted(Comparator.comparing(CountryTax::getCountryCode))
+                .sorted(Comparator.comparing(CountryTax::getCountryCode).reversed())
                 .collect(Collectors.toList()).subList(0,3);
 
 //        List<CountryTax> threeBiggest = new ArrayList<>();
