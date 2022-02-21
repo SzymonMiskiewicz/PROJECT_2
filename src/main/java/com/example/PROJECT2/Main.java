@@ -59,7 +59,7 @@ public class Main {
         // end region
 
         // metoda dla użytkownika
-//        taxFilter.getInformationAboutCountryByAbbreviation();
+        taxFilter.getInformationAboutCountryByAbbreviation();
         // end region
 
     }

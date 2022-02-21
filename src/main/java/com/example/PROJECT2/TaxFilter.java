@@ -5,9 +5,10 @@ import java.util.stream.Collectors;
 
 public class TaxFilter {
 
-    private TaxResponse tax = new TaxResponse() ;
+    private TaxResponse tax ;
     private List<CountryTax> taxList = new ArrayList<>();
     private String input ;
+
 
 
     public TaxFilter(){}
@@ -38,7 +39,7 @@ public class TaxFilter {
 
         taxList.sort(Comparator.comparing(CountryTax::getStandardRate).reversed());
         List<CountryTax> threeSmallest = taxList.stream()
-                .sorted(Comparator.comparing(CountryTax::getCountryCode))
+                .sorted(Comparator.comparing(CountryTax::getStandardRate))
                 .collect(Collectors.toList()).subList(0,3);
 
 
@@ -53,9 +54,9 @@ public class TaxFilter {
     }
 
     public List<CountryTax> getThreeCountriesWithBiggestStandardRateOfTax(List<CountryTax>taxList) {
-//        taxList.sort(Comparator.comparing(CountryTax::getStandardRate).reversed());
+
         List<CountryTax> threeBiggest = taxList.stream()
-                .sorted(Comparator.comparing(CountryTax::getCountryCode).reversed())
+                .sorted(Comparator.comparing(CountryTax::getStandardRate).reversed())
                 .collect(Collectors.toList()).subList(0,3);
 
 //        List<CountryTax> threeBiggest = new ArrayList<>();
@@ -84,8 +85,7 @@ public class TaxFilter {
 //                System.out.println("Country not found");
 //            }
 //        }
-
-
+        
 
         System.out.println("Write your input of country (or \"END\" to quit): ");
         Scanner scanner = new Scanner(System.in);
@@ -94,25 +94,22 @@ public class TaxFilter {
 
             input = scanner.nextLine().toUpperCase(Locale.GERMANY);
 
-
-            Optional<CountryTax> countryYouLookingFor = taxList.stream().filter(countryTax
-                    -> Objects.equals(countryTax.getCountryCode(), input)).findAny();
-
-            if (countryYouLookingFor.isPresent()) {
-
+                Optional<CountryTax> countryYouLookingFor = taxList.stream().filter(countryTax
+                        -> Objects.equals(countryTax.getCountryCode(), input)).findAny();
+            if(countryYouLookingFor.isPresent()) {
                 System.out.println(countryYouLookingFor.get().getCountryCode()
                         + " ---" + countryYouLookingFor.get().getStandardRate());
-            } else if (input.length() != 2) {
 
-                System.err.println("Length of input must be 2 characters");
-
-            }else
-            {
-                System.out.println("Country not found");
+            } else {
+                    System.err.println("Length of input must be 2 characters");
             }
+
+
         }while (!input.equalsIgnoreCase("END"));
 
+
     }
+
 
 
 
