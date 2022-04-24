@@ -40,24 +40,24 @@ public class Tools {
         return taxResponse; // nowy obiekt zrobić
     }
 
-   /* public void exportToFile(String fileName) throws TaxException {
+    public void exportToFile(String fileName, List<CountryTax>taxList) throws TaxException {
         try(PrintWriter writer = new PrintWriter(new FileOutputStream(fileName))) {
 //            for (int i = 0; i < 3; i++) {
             writer.println("Countries with lowest standard rate: "
-                    + taxFilter.getThreeCountriesWithSmallerStandardRateOfTax());
+                    + taxFilter.getThreeCountriesWithSmallestStandardRateOfTax(taxList));
 //            }
             writer.println(Main.GAP);
 
 //            for (int i = countrySize()-3; i < countrySize() ; i--) {
 //            taxArrayList.get(i)
             writer.println("Countries with highest standard rate: "
-                    + taxFilter.getThreeCountriesWithBiggestStandardRateOfTax());
+                    + taxFilter.getThreeCountriesWithBiggestStandardRateOfTax(taxList));
 //        }
         }catch (FileNotFoundException e) {
             throw new TaxException("File: " + fileName + "is not found" + e.getMessage());
         }
 
-    }*/
+    }
 
 
 //    public CountryTax getInfoOfCountriesByAbbreviation() {

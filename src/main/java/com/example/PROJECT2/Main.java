@@ -1,7 +1,6 @@
 package com.example.PROJECT2;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -34,15 +33,15 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
-        countryTaxList = taxFilter.callObject(tax);
+        countryTaxList = taxFilter.parseObjectToList(tax);
 
 
         //export do pliku
-//        try {
-//            tools.exportToFile(OUTPUTFILE);
-//                } catch (TaxException e) {
-//            System.out.println(e.getMessage());
-//        }
+        try {
+            tools.exportToFile(OUTPUTFILE, countryTaxList);
+                } catch (TaxException e) {
+            System.out.println(e.getMessage());
+        }
         // end region
 
             //wypis wszystkich krajów
@@ -59,7 +58,7 @@ public class Main {
         // end region
 
         // metoda dla użytkownika
-        taxFilter.getInformationAboutCountryByAbbreviation();
+        taxFilter.getInformationAboutCountryByAbbreviation(countryTaxList);
         // end region
 
     }
