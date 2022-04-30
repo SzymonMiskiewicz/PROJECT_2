@@ -59,10 +59,10 @@ public class Tools {
 
     }
 
-    public static String formatThreeCountriesWithBiggestStandardRateOfTax() {
+    public static String formatThreeCountriesWithBiggestStandardRateOfTax(List<CountryTax>taxList) {
 
         TaxFilter taxFilter = new TaxFilter();
-        CountryTax countryTax = new CountryTax();
+//        CountryTax countryTax = new CountryTax();
 
         StringBuilder builder = new StringBuilder(
                 "List of Three countries with Biggest Standard rate of tax: ("
@@ -71,7 +71,7 @@ public class Tools {
                         + System.lineSeparator());
 
         taxArrayList.forEach(
-                CountryTax -> {
+                countryTax -> {
 
                     builder.append(" *********** ").append(countryTax);
                     builder.append(System.lineSeparator());
@@ -80,7 +80,7 @@ public class Tools {
         return builder.toString();
     }
 
-    public static String formatThreeCountriesWithSmallestStandardRateOfTax() {
+    public static String formatThreeCountriesWithSmallestStandardRateOfTax(List<CountryTax>taxList) {
 
         TaxFilter taxFilter = new TaxFilter();
         CountryTax countryTax = new CountryTax();

@@ -56,7 +56,7 @@ public class Main {
         // end region
 
         //Format of three countries with the biggest rate
-        System.out.println(Tools.formatThreeCountriesWithBiggestStandardRateOfTax());
+        System.out.println(Tools.formatThreeCountriesWithBiggestStandardRateOfTax(countryTaxList));
         //end region
 
         // Three countries with smallest tax
@@ -64,7 +64,7 @@ public class Main {
         // end region
 
         // Format of three countries with the smallest rate
-        System.out.println(Tools.formatThreeCountriesWithSmallestStandardRateOfTax());
+        System.out.println(Tools.formatThreeCountriesWithSmallestStandardRateOfTax(countryTaxList));
         //end region
 
         // metoda dla użytkownika/uzivatele
