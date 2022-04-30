@@ -16,7 +16,7 @@ public class Tools {
     private TaxResponse taxResponse;
     private static List<CountryTax> taxArrayList = new ArrayList<>();
     private TaxFilter taxFilter = new TaxFilter();
-    private CountryTax countryTax = new CountryTax();
+
 
     public int countriesSize (){
         return taxArrayList.size();
@@ -68,6 +68,27 @@ public class Tools {
                 "List of Three countries with Biggest Standard rate of tax: ("
 
                         + taxFilter.getThreeCountriesWithBiggestStandardRateOfTax(taxArrayList)
+                        + System.lineSeparator());
+
+        taxArrayList.forEach(
+                CountryTax -> {
+
+                    builder.append(" *********** ").append(countryTax);
+                    builder.append(System.lineSeparator());
+                });
+
+        return builder.toString();
+    }
+
+    public static String formatThreeCountriesWithSmallestStandardRateOfTax() {
+
+        TaxFilter taxFilter = new TaxFilter();
+        CountryTax countryTax = new CountryTax();
+
+        StringBuilder builder = new StringBuilder(
+                "List of Three countries with Smallest Standard rate of tax: ("
+
+                        + taxFilter.getThreeCountriesWithSmallestStandardRateOfTax(taxArrayList)
                         + System.lineSeparator());
 
         taxArrayList.forEach(

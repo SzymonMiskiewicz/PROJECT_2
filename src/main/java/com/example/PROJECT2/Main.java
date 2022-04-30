@@ -55,14 +55,17 @@ public class Main {
         System.out.println(taxFilter.getThreeCountriesWithBiggestStandardRateOfTax(countryTaxList));
         // end region
 
-        //Format of three countries
-        System.out.println(Tools.formatThreeCountriesWithBiggestStandardRateOfTax(
-                taxFilter.getThreeCountriesWithBiggestStandardRateOfTax()));
+        //Format of three countries with the biggest rate
+        System.out.println(Tools.formatThreeCountriesWithBiggestStandardRateOfTax());
         //end region
 
         // Three countries with smallest tax
         System.out.println(taxFilter.getThreeCountriesWithSmallestStandardRateOfTax(countryTaxList));
         // end region
+
+        // Format of three countries with the smallest rate
+        System.out.println(Tools.formatThreeCountriesWithSmallestStandardRateOfTax());
+        //end region
 
         // metoda dla użytkownika/uzivatele
         taxFilter.getInformationAboutCountryByAbbreviation(countryTaxList);
