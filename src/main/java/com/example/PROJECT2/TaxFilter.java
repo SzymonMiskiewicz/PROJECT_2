@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 public class TaxFilter {
 
+    CountryTax country = new CountryTax();
 
     private String input ;
 
@@ -68,6 +69,7 @@ public class TaxFilter {
     public void getInformationAboutCountryByAbbreviation(List<CountryTax>taxList) {
 
         System.out.println("Write your input of country (or \"END\" to quit): ");
+
         Scanner scanner = new Scanner(System.in);
 
         do {
@@ -89,20 +91,20 @@ public class TaxFilter {
 
     }
 
-//    public void isCountryCodeCorrect(String country) throws TaxException {
+//    public void isCountryCodeCorrect() throws TaxException {
 //
-////          String country = " ";
+//
 //            if(this.country.getCountryCode().length() != 0){
 //
 //            throw new TaxException("The country is already set");
 //            }
 //
-//            else if (country.length() != 2) {
+//            else if (country.getCountryCode().length() != 2) {
 //
 //            throw new TaxException("The country string's size cannot be greater than 2");
 //            }
 //            else {
-//            this.country.countryCode = country;
+//                System.out.println("OK !");;
 //            }
 //    }
 

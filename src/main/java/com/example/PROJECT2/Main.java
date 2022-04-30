@@ -1,7 +1,9 @@
 package com.example.PROJECT2;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
 
 public class Main {
 
@@ -19,8 +21,8 @@ public class Main {
         Tools tools = new Tools();
         TaxFilter taxFilter = new TaxFilter();
         TaxResponse tax = new TaxResponse();
-//        CountryTax countryTax = new CountryTax();
-        List<CountryTax> countryTaxList ;
+        CountryTax countryTax = new CountryTax();
+        List<CountryTax> countryTaxList;
 
 
 
@@ -53,13 +55,19 @@ public class Main {
         System.out.println(taxFilter.getThreeCountriesWithBiggestStandardRateOfTax(countryTaxList));
         // end region
 
+        //Format of three countries
+        System.out.println(Tools.formatThreeCountriesWithBiggestStandardRateOfTax(
+                taxFilter.getThreeCountriesWithBiggestStandardRateOfTax()));
+        //end region
+
         // Three countries with smallest tax
         System.out.println(taxFilter.getThreeCountriesWithSmallestStandardRateOfTax(countryTaxList));
         // end region
 
-        // metoda dla użytkownika
+        // metoda dla użytkownika/uzivatele
         taxFilter.getInformationAboutCountryByAbbreviation(countryTaxList);
         // end region
+
 
     }
 
