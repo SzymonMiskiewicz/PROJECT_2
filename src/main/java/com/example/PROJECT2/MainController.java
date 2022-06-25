@@ -1,6 +1,7 @@
 package com.example.PROJECT2;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -23,7 +24,7 @@ public class MainController {
         TaxFilter taxFilter = new TaxFilter();
         TaxResponse taxResponse = new TaxResponse();
         String body = callApi.callApi();
-        tools.mapToObject(body);
+        taxResponse = tools.mapToObject(body);
         taxList = taxFilter.parseObjectToList(taxResponse);
     }
 
@@ -47,9 +48,9 @@ public class MainController {
     }
 
     @GetMapping (path = "/getInformationAboutCountry")
-    public String getInformationAboutCountry(){
+    public String getInformationAboutCountry(@RequestParam String country){
         TaxFilter taxFilter = new TaxFilter();
-        return taxFilter.getInformationAboutCountry(taxList);
+        return taxFilter.getInformationAboutCountry(taxList, country);
     }
 
 

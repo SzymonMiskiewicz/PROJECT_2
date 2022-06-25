@@ -84,34 +84,25 @@ public class TaxFilter {
         } while (!input.equalsIgnoreCase("END"));
 
 
-
     }
 
-    public String getInformationAboutCountry(List<CountryTax>taxList) {
 
-        System.out.println("Write your input of country (or \"END\" to quit): ");
+    public String getInformationAboutCountry(List<CountryTax>taxList, String country) {
 
-        Scanner scanner = new Scanner(System.in);
-
-        do {
-
-            input = scanner.nextLine().toUpperCase(Locale.GERMANY);
 
             Optional<CountryTax> countryYouLookingFor = taxList.stream().filter(countryTax
-                    -> Objects.equals(countryTax.getCountryCode(), input)).findAny();
+                    -> Objects.equals(countryTax.getCountryCode(), country)).findAny();
             if (countryYouLookingFor.isPresent()) {
-                System.out.println(countryYouLookingFor.get().getCountryCode()
+                return countryYouLookingFor.get().getCountryName()
                         + " --->" +
-                        "" + countryYouLookingFor.get().getStandardRate());
+                        "" + countryYouLookingFor.get().getStandardRate();
 
             } else {
                 System.err.println("Length of input must be 2 characters");
             }
 
 
-        } while (!input.equalsIgnoreCase("END"));
-
-        return taxList.toString();
+        return " Country not found";
 
     }
 
