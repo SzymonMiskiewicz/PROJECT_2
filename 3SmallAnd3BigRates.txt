@@ -1,4 +1,14 @@
-Countries with lowest standard rate: [CountryTax{country:'LU', standardRate:17.0, reducedRate:Luxembourg}, CountryTax{country:'MT', standardRate:18.0, reducedRate:Malta}, CountryTax{country:'CY', standardRate:19.0, reducedRate:Cyprus}]
+Countries with lowest standard rate: 
+
+[  country code: LU,	 standardRate: 17.0 %
+,   country code: MT,	 standardRate: 18.0 %
+,   country code: CY,	 standardRate: 19.0 %
+]
 
 =========================================
-Countries with highest standard rate: [CountryTax{country:'HU', standardRate:27.0, reducedRate:Hungary}, CountryTax{country:'DK', standardRate:25.0, reducedRate:Denmark}, CountryTax{country:'HR', standardRate:25.0, reducedRate:Croatia}]
+Countries with highest standard rate: 
+
+[  country code: HU,	 standardRate: 27.0 %
+,   country code: DK,	 standardRate: 25.0 %
+,   country code: HR,	 standardRate: 25.0 %
+]

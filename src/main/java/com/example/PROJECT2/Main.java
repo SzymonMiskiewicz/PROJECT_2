@@ -21,7 +21,6 @@ public class Main {
         Tools tools = new Tools();
         TaxFilter taxFilter = new TaxFilter();
         TaxResponse tax = new TaxResponse();
-        CountryTax countryTax = new CountryTax();
         List<CountryTax> countryTaxList;
 
 
@@ -52,19 +51,19 @@ public class Main {
         //end region
 
         // Three countries with biggest tax
-        System.out.println(taxFilter.getThreeCountriesWithBiggestStandardRateOfTax(countryTaxList));
+//        System.out.println(taxFilter.getThreeCountriesWithBiggestStandardRateOfTax(countryTaxList));
         // end region
 
         //Format of three countries with the biggest rate
-        System.out.println(Tools.formatThreeCountriesWithBiggestStandardRateOfTax(countryTaxList));
+        System.out.println(tools.formatThreeCountriesWithBiggestStandardRateOfTax(countryTaxList, taxFilter));
         //end region
 
         // Three countries with smallest tax
-        System.out.println(taxFilter.getThreeCountriesWithSmallestStandardRateOfTax(countryTaxList));
+//        System.out.println(taxFilter.getThreeCountriesWithSmallestStandardRateOfTax(countryTaxList));
         // end region
 
         // Format of three countries with the smallest rate
-        System.out.println(Tools.formatThreeCountriesWithSmallestStandardRateOfTax(countryTaxList));
+        System.out.println(tools.formatThreeCountriesWithSmallestStandardRateOfTax(countryTaxList, taxFilter));
         //end region
 
         // metoda dla użytkownika/uzivatele

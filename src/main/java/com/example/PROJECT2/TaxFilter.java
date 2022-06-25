@@ -7,7 +7,7 @@ public class TaxFilter {
 
     CountryTax country = new CountryTax();
 
-    private String input ;
+    private  String input ;
 
 
     public TaxFilter(){}
@@ -36,33 +36,26 @@ public class TaxFilter {
 
     public List<CountryTax> getThreeCountriesWithSmallestStandardRateOfTax(List<CountryTax>taxList) {
 
+        //zyskanie 3 krajów z najmniejszym rate
         taxList.sort(Comparator.comparing(CountryTax::getStandardRate).reversed());
         List<CountryTax> threeSmallest = taxList.stream()
                 .sorted(Comparator.comparing(CountryTax::getStandardRate))
                 .collect(Collectors.toList()).subList(0,3);
 
 
-        //zyskanie 3 krajów z najmniejszym rate
-//        List<CountryTax> threeSmaller = new ArrayList<>();
-//        for (int i = countrySize(); i < 3; i++) {
-//
-//            threeSmaller.add(taxArrayList.get(i));
-//        }
+
 
         return threeSmallest;
     }
 
     public List<CountryTax> getThreeCountriesWithBiggestStandardRateOfTax(List<CountryTax>taxList) {
 
+        //zyskanie 3 krajów z największym rate
         List<CountryTax> threeBiggest = taxList.stream()
                 .sorted(Comparator.comparing(CountryTax::getStandardRate).reversed())
                 .collect(Collectors.toList()).subList(0,3);
 
-//        List<CountryTax> threeBiggest = new ArrayList<>();
-//        //zyskanie 3 krajów z największym rate
-//        for (int i = countrySize(); i > countrySize() - 3; i--) {
-//            threeBiggest.add(taxArrayList.get(i - 1));
-//        }
+
         return threeBiggest;
     }
 
@@ -80,7 +73,8 @@ public class TaxFilter {
                     -> Objects.equals(countryTax.getCountryCode(), input)).findAny();
             if (countryYouLookingFor.isPresent()) {
                 System.out.println(countryYouLookingFor.get().getCountryCode()
-                        + " ---" + countryYouLookingFor.get().getStandardRate());
+                        + " --->" +
+                        "" + countryYouLookingFor.get().getStandardRate());
 
             } else {
                 System.err.println("Length of input must be 2 characters");
@@ -89,25 +83,37 @@ public class TaxFilter {
 
         } while (!input.equalsIgnoreCase("END"));
 
+
+
     }
 
-//    public void isCountryCodeCorrect() throws TaxException {
-//
-//
-//            if(this.country.getCountryCode().length() != 0){
-//
-//            throw new TaxException("The country is already set");
-//            }
-//
-//            else if (country.getCountryCode().length() != 2) {
-//
-//            throw new TaxException("The country string's size cannot be greater than 2");
-//            }
-//            else {
-//                System.out.println("OK !");;
-//            }
-//    }
+    public String getInformationAboutCountry(List<CountryTax>taxList) {
 
+        System.out.println("Write your input of country (or \"END\" to quit): ");
+
+        Scanner scanner = new Scanner(System.in);
+
+        do {
+
+            input = scanner.nextLine().toUpperCase(Locale.GERMANY);
+
+            Optional<CountryTax> countryYouLookingFor = taxList.stream().filter(countryTax
+                    -> Objects.equals(countryTax.getCountryCode(), input)).findAny();
+            if (countryYouLookingFor.isPresent()) {
+                System.out.println(countryYouLookingFor.get().getCountryCode()
+                        + " --->" +
+                        "" + countryYouLookingFor.get().getStandardRate());
+
+            } else {
+                System.err.println("Length of input must be 2 characters");
+            }
+
+
+        } while (!input.equalsIgnoreCase("END"));
+
+        return taxList.toString();
+
+    }
 
 
 }

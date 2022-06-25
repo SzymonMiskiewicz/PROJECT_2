@@ -47,13 +47,13 @@ public class CountryTax extends ArrayList<TaxResponse> {
     }
 
 
+
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("CountryTax{");
-        sb.append("country:'").append(countryCode).append('\'');
-        sb.append(", standardRate:").append(standardRate);
-        sb.append(", reducedRate:").append(countryName);
-        sb.append('}');
+        final StringBuilder sb = new StringBuilder(" ");
+        sb.append(" country code: ").append(countryCode).append(",\t");
+        sb.append(" standardRate: ").append(standardRate).append(" %\n");
+
         return sb.toString();
     }
 
