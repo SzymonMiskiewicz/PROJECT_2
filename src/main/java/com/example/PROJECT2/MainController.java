@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 @RestController
 public class MainController {
 
+    List<CountryTax>taxList = new ArrayList<>();
     Tools tools = new Tools();
     public MainController() throws IOException, InterruptedException {
         this.init();
@@ -23,11 +24,11 @@ public class MainController {
         TaxResponse taxResponse = new TaxResponse();
         String body = callApi.callApi();
         tools.mapToObject(body);
-        taxFilter.parseObjectToList(taxResponse);
+        taxList = taxFilter.parseObjectToList(taxResponse);
     }
 
     @GetMapping (path = "/getThreeCountriesWithSmallestStandardRateOfTax")
-    public String getThreeCountriesWithSmallestStandardRateOfTax(List<CountryTax>taxList){
+    public String getThreeCountriesWithSmallestStandardRateOfTax(){
         taxList.sort(Comparator.comparing(CountryTax::getStandardRate).reversed());
         List<CountryTax> threeSmallest = taxList.stream()
                 .sorted(Comparator.comparing(CountryTax::getStandardRate))
@@ -37,7 +38,7 @@ public class MainController {
     }
 
     @GetMapping (path = "/getThreeCountriesWithBiggestStandardRateOfTax")
-    public String getThreeCountriesWithBiggestStandardRateOfTax(List<CountryTax>taxList){
+    public String getThreeCountriesWithBiggestStandardRateOfTax(){
         List<CountryTax> threeBiggest = taxList.stream()
                 .sorted(Comparator.comparing(CountryTax::getStandardRate).reversed())
                 .collect(Collectors.toList()).subList(0,3);
@@ -46,7 +47,7 @@ public class MainController {
     }
 
     @GetMapping (path = "/getInformationAboutCountry")
-    public String getInformationAboutCountry(List<CountryTax>taxList){
+    public String getInformationAboutCountry(){
         TaxFilter taxFilter = new TaxFilter();
         return taxFilter.getInformationAboutCountry(taxList);
     }
